@@ -23,7 +23,7 @@ const Navbar = () => {
                    >
                   <Logo/>
                   <Search/>
-                  <UserMenu />
+                  <UserMenu/>
                   
                 </div>
             </Container>
