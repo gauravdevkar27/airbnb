@@ -1,5 +1,5 @@
 export default {
-  pplugins: {
+  plugins: {
     '@tailwindcss/postcss': {}, // Add the '@' and '/postcss' here
     'autoprefixer': {},
   },

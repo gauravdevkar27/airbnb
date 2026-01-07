@@ -9,10 +9,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // You can add your Airbnb-specific colors here later
-      colors: {
-        brand: "#FF385C", // Airbnb Red
-      },
+      
     },
   },
   plugins: [],

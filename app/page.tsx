@@ -1,6 +1,6 @@
 import './globals.css'
 export default function Home() {
   return (
-    <div>Hello next js</div>
+    <div className='text-rose-500 text-2xl'>Hello Airbnb</div>
      );
 }
