@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Model from "./components/models/Model";
 import "./globals.css";
 import ToasterProvider from "./components/providers/Toasterprovider";
+import LoginModel from "./components/models/LoginModel";
 import Navbar from "./components/navbar/Navbar";
 import ClientOnly from "./components/ClientOnly";
 
@@ -27,7 +28,7 @@ export default function RootLayout({
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider/>
-          
+          <LoginModel/>
           <Navbar/>
         </ClientOnly>
         {children}
