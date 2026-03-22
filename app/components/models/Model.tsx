@@ -13,7 +13,7 @@ interface ModelPros {
     actionLabel: string;
     disabled?: boolean;
     secondaryAction?: () => void;
-    secondaryLabel?: string;
+    secondaryActionLabel?: string;
 }
 
 const Model: React.FC<ModelPros> = ({
@@ -26,7 +26,7 @@ const Model: React.FC<ModelPros> = ({
     actionLabel,
     disabled,
     secondaryAction,
-    secondaryLabel
+    secondaryActionLabel
 
 }) => {
 
@@ -158,7 +158,18 @@ const Model: React.FC<ModelPros> = ({
                           gap-4
                           w-full
                           ">
-                            <Button label="My button"/>
+                            {secondaryAction && secondaryActionLabel && (
+                              <Button 
+                            disabled={disabled}
+                            label={secondaryActionLabel}
+                            onClick={handleSecondayAction}/>
+
+                            )}
+                            
+                           <Button 
+                            disabled={disabled}
+                            label={actionLabel}
+                            onClick={handleSubmit}/>
                           </div>
                         </div>
                         </div>

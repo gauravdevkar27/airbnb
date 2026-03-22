@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientOnly>
-          <Model title="hello world" isOpen/>
+          <Model actionLabel="Submit" title="hello world" isOpen/>
           <Navbar/>
         </ClientOnly>
         {children}
