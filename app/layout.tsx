@@ -4,6 +4,7 @@ import Model from "./components/models/Model";
 import "./globals.css";
 import ToasterProvider from "./components/providers/Toasterprovider";
 import LoginModel from "./components/models/LoginModel";
+import RegisterModel from "./components/models/RegisterModel";
 import Navbar from "./components/navbar/Navbar";
 import ClientOnly from "./components/ClientOnly";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider/>
+          <RegisterModel/>
           <LoginModel/>
           <Navbar/>
         </ClientOnly>

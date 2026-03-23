@@ -13,6 +13,7 @@ const UserMenu = () => {
     const [isOpen, setIsOpen] = useState(false)
     const loginModel = useLoginModel();
     const registerModel = useRegisterModel();
+
     const toggleOpen = useCallback(() => {
         setIsOpen((val) => !val);
     }, [])

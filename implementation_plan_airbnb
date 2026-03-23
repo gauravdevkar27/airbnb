@@ -1,0 +1,86 @@
+# Airbnb Clone Implementation Plan
+
+This document outlines the current state of the project and the step-by-step plan for completing the frontend first, followed by the backend.
+
+## 1. Current State (What is completed)
+Based on the file analysis, you have successfully set up:
+- **Core Framework**: Next.js 16 with App Router and Tailwind CSS.
+- **State Management**: `zustand` is installed.
+- **Base Components**: Reusable `Button`, `Container`, `ClientOnly`, and `Avatar` components are created.
+- **Navbar**: The top navigation bar is partially complete with `Navbar`, `Logo`, `Search`, `UserMenu`, and `MenuItem` components.
+- **Modal Foundation**: A generic [Model.tsx](file:///c:/Users/My%20PC/airbnb/app/components/models/Model.tsx) file is in `app/components/models` (Note: we should rename this folder to `modals`).
+- **Layout**: `layout.tsx` is configured with a custom font (`Geist_Mono`) and includes the `Navbar`.
+
+## 2. Frontend Execution Plan
+
+### Recommended Frontend Dependencies
+Run the following to install essential frontend libraries:
+```bash
+npm install react-hook-form react-hot-toast date-fns react-date-range next-cloudinary leaflet react-leaflet world-countries query-string axios
+npm install -D @types/leaflet @types/react-date-range
+```
+
+### Proposed Folder Structure (Frontend)
+Here is the recommended folder structure to keep your project organized:
+
+```text
+app/
+  components/
+    inputs/             # Specialized input fields 
+      Input.tsx         # Standard text input using react-hook-form
+      CategoryInput.tsx # Selectable categories
+      CountrySelect.tsx # Dropdown for countries
+      Calendar.tsx      # Date selection
+      ImageUpload.tsx   # Cloudinary image uploader
+      Counter.tsx       # Increment/decrement counters
+    modals/             # Modal dialogs (Rename from 'models')
+      Modal.tsx         # Base modal wrapper
+      LoginModal.tsx
+      RegisterModal.tsx
+      RentModal.tsx     # Airbnb your home flow
+      SearchModal.tsx   # Advanced search flow
+    listings/           # Listing related UI
+      ListingCard.tsx   # Grid item
+      ListingHead.tsx   # Detail page hero image & title
+      ListingInfo.tsx   # Property details
+      ListingReservation.tsx # Date picker & price calculation
+  hooks/                # Zustand stores and custom hooks
+    useLoginModal.ts
+    useRegisterModal.ts
+    useRentModal.ts
+    useCountries.ts
+  providers/            # Global providers
+    ToasterProvider.tsx # For react-hot-toast
+  types/                # TypeScript interfaces
+    index.ts
+  (pages)/              # App Router route directories
+    listings/[listingId]/page.tsx
+    trips/page.tsx
+    reservations/page.tsx
+    favorites/page.tsx
+    properties/page.tsx
+```
+
+## 3. Next Steps (What to implement next)
+1. **Providers & Toaster**: Set up the `ToasterProvider` in `layout.tsx` for beautiful notifications.
+2. **Rename 'models'**: Rename `app/components/models` to `app/components/modals` and correct any imports.
+3. **Modals & Authentication UI**: 
+   - Create `useLoginModal` and `useRegisterModal` hooks with Zustand.
+   - Build `Input.tsx` for forms.
+   - Build `LoginModal.tsx` and `RegisterModal.tsx`.
+4. **Categories**: Implement a horizontal scrolling categories bar right below the Navbar for filtering.
+5. **Home Page UI**: Build `ListingCard.tsx` and mock up the grid on `page.tsx` with dummy data.
+
+## 4. Backend Plan (After Frontend is complete)
+Once the UI flows are completely mapped out:
+1. **Database & ORM**: Setup MongoDB with Prisma (`npm i prisma @prisma/client`).
+2. **Authentication**: Setup NextAuth.js (`npm i next-auth bcrypt`) for Credentials, Google, and Github login.
+3. **API Routes**: Create Node/Next API routes in `app/api/...` for register, listings, reservations, and favorites.
+4. **Integration**: Replace frontend mock data with actual data fetching tools like React Query, SWR, or Next.js server actions.
+
+## User Review Required
+> [!IMPORTANT]
+> Please review this plan, particularly the tech stack choices (e.g., using `react-hook-form`, `react-hot-toast`, `next-cloudinary`). 
+> Let me know if you want to:
+> 1. Proceed with renaming `models` to `modals` and start building the `RegisterModal` and `LoginModal` UI.
+> 2. Or, if you have different preferences for the folder structure and steps!
