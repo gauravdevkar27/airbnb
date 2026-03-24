@@ -150,7 +150,9 @@ const Model: React.FC<ModelPros> = ({
                            {body}
                         </div>
                         {/* Footer */}
+                        {footer}
                         <div className="flex flex-col gap-2 p-6">
+                            
                           <div className="
                           flex
                           flex-row

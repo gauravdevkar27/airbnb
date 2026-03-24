@@ -6,11 +6,13 @@ import { toast } from 'react-hot-toast';
 
 import Model from "./Model";
 import useRegisterModel from "../hooks/useRegisterModel";
+import useLoginModel from '../hooks/useLoginModel'; 
 import Input from '../inputs/Input';
 import Heading from '../Heading';
 
+
 const RegisterModel = () => {
-   
+    const loginModel = useLoginModel();
     const registerModel = useRegisterModel();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,6 +37,11 @@ const RegisterModel = () => {
         
         setIsLoading(false);
         registerModel.onClose();
+    };
+
+    const toggle = () => {
+        registerModel.onClose();
+        loginModel.onOpen();
     };
 
     const bodyContent = (
@@ -75,7 +82,7 @@ const RegisterModel = () => {
                 <div className="justify-center flex flex-row items-center gap-2">
                     <div>Already have an account?</div>
                     <div
-                        onClick={registerModel.onClose}
+                        onClick={toggle}
                         className="text-neutral-800 cursor-pointer hover:underline"
                     >
                         Log in
