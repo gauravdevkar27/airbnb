@@ -1,0 +1,35 @@
+model Country {
+  coun_id    String   @id @default(uuid()) @db.Uuid
+  name       String   @db.VarChar(100)
+  code       String   @db.VarChar(10)
+  status     String   @db.VarChar(50)
+
+  states     State[]
+
+  @@map("countries")
+}
+
+model State {
+  state_id   String   @id @default(uuid()) @db.Uuid
+  coun_id    String   @db.Uuid
+  name       String   @db.VarChar(100)
+  code       String   @db.VarChar(10)
+  status     String   @db.VarChar(50)
+
+  country    Country  @relation(fields: [coun_id], references: [coun_id])
+  cities     City[]
+
+  @@map("states")
+}
+
+model City {
+  city_id    String   @id @default(uuid()) @db.Uuid
+  state_id   String   @db.Uuid
+  name       String   @db.VarChar(100)
+  status     String   @db.VarChar(50)
+
+  state      State    @relation(fields: [state_id], references: [state_id])
+  properties Property[]
+
+  @@map("cities")
+}
