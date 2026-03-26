@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 
 import Model from "./Model";
 import useRegisterModel from "../hooks/useRegisterModel";
-import useLoginModel from '../hooks/useLoginModel'; 
+import useLoginModel from '../hooks/useLoginModel';
 import Input from '../inputs/Input';
 import Heading from '../Heading';
 
@@ -34,7 +34,7 @@ const RegisterModel = () => {
         // Replace this print logic with your actual registration API call (e.g., axios.post)
         console.log("Submit data:", data);
         toast.success("Details logged to console!");
-        
+
         setIsLoading(false);
         registerModel.onClose();
     };
