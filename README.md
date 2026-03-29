@@ -34,3 +34,56 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+## Folder structure
+airbnb/
+├── app/
+│   ├── actions/              ← server data fetchers
+│   │   ├── getCurrentUser.ts
+│   │   ├── getListings.ts
+│   │   ├── getListingById.ts
+│   │   └── getReservations.ts
+│   │
+│   ├── api/                  ← thin route handlers only
+│   │   ├── auth/[...nextauth]/route.ts
+│   │   ├── register/route.ts
+│   │   ├── listings/
+│   │   │   ├── route.ts
+│   │   │   └── [listingId]/route.ts
+│   │   ├── reservations/
+│   │   │   ├── route.ts
+│   │   │   └── [reservationId]/route.ts
+│   │   └── reviews/route.ts
+│   │
+│   ├── components/
+│   │   ├── inputs/
+│   │   ├── listings/
+│   │   ├── modals/
+│   │   ├── navbar/
+│   │   ├── providers/
+│   │   └── ui/               ← Button, Avatar, Heading etc.
+│   │
+│   ├── hooks/
+│   ├── libs/
+│   │   └── prismadb.ts
+│   │
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── controllers/              ← ✅ moved outside app/
+│   └── authController.ts
+│
+├── types/                    ← ✅ moved outside app/
+│   └── index.ts
+│
+├── constants/                ← ✅ new
+│   └── categories.ts
+│
+├── public/
+├── .env
+├── middleware.ts
+├── next.config.js
+└── tailwind.config.ts
