@@ -57,7 +57,7 @@ export const authOptions: AuthOptions = {
                 if (user.status === 'inactive') {
                     throw new Error('Your account is inactive. Contact support.');
                 }
-
+                // ── 4. Password check ─────────────────────────────────────────────
                 const isCorrectPassword = await bcrypt.compare(
                     credentials.password,
                     user.password
@@ -71,6 +71,10 @@ export const authOptions: AuthOptions = {
                     name: `${user.first_name} ${user.last_name}`,
                     email: user.email,
                     image: user.profile_img,
+                    email_verified: user.email_verified,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    status: user.status,
                 };
             }
         })
@@ -78,33 +82,45 @@ export const authOptions: AuthOptions = {
 
 
     // ── Session & JWT ─────────────────────────────────────────────────────────
-    session: { strategy: 'jwt' },
+
+
 
     callbacks: {
         async jwt({ token, user }) {
+            // Persist extra fields into the JWT token
             if (user) {
-                token.id = (user as any).user_id;
+                token.id = user.id;
                 token.email_verified = (user as any).email_verified;
+                token.first_name = (user as any).first_name;
+                token.last_name = (user as any).last_name;
+                token.status = (user as any).status;
+                token.picture = (user as any).image;
             }
             return token;
         },
+        // Expose those JWT fields on the session object
         async session({ session, token }) {
             if (session.user) {
                 (session.user as any).id = token.id;
                 (session.user as any).email_verified = token.email_verified;
+                (session.user as any).first_name = token.first_name;
+                (session.user as any).last_name = token.last_name;
+                (session.user as any).status = token.status;
+                session.user.image = token.picture as string;
             }
             return session;
         },
     },
 
     pages: {
-        signIn: '/',
-        error: '/',
+        signIn: '/login',
+        error: '/login',
 
     },
+
+    session: { strategy: 'jwt' },
+    secret: process.env.NEXTAUTH_SECRET,
     debug: process.env.NODE_ENV === 'development',
-    
-    secret: process.env.NEXTAUTH_SECRET
 };
 
 const handler = NextAuth(authOptions);
