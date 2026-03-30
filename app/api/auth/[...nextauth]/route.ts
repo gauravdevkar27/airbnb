@@ -75,15 +75,11 @@ export const authOptions: AuthOptions = {
                     first_name: user.first_name,
                     last_name: user.last_name,
                     status: user.status,
+                    role: (user.role as "user" | "admin"),
                 };
             }
         })
     ],
-
-
-    // ── Session & JWT ─────────────────────────────────────────────────────────
-
-
 
     callbacks: {
         async jwt({ token, user }) {
@@ -94,6 +90,7 @@ export const authOptions: AuthOptions = {
                 token.first_name = (user as any).first_name;
                 token.last_name = (user as any).last_name;
                 token.status = (user as any).status;
+                token.role = (user as any).role;
                 token.picture = (user as any).image;
             }
             return token;
@@ -106,6 +103,7 @@ export const authOptions: AuthOptions = {
                 (session.user as any).first_name = token.first_name;
                 (session.user as any).last_name = token.last_name;
                 (session.user as any).status = token.status;
+                (session.user as any).role = token.role;
                 session.user.image = token.picture as string;
             }
             return session;

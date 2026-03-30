@@ -16,6 +16,7 @@ model User {
   created_at         DateTime  @default(now())
   updated_at         DateTime  @updatedAt
   status             String    @db.VarChar(50)
+  role               String    @default("user") 
 
   properties         Property[]
   bookings           Booking[]

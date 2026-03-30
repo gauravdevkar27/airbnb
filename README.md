@@ -38,52 +38,74 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 ## Folder structure
-airbnb/
-├── app/
-│   ├── actions/              ← server data fetchers
-│   │   ├── getCurrentUser.ts
-│   │   ├── getListings.ts
-│   │   ├── getListingById.ts
-│   │   └── getReservations.ts
-│   │
-│   ├── api/                  ← thin route handlers only
-│   │   ├── auth/[...nextauth]/route.ts
-│   │   ├── register/route.ts
-│   │   ├── listings/
-│   │   │   ├── route.ts
-│   │   │   └── [listingId]/route.ts
-│   │   ├── reservations/
-│   │   │   ├── route.ts
-│   │   │   └── [reservationId]/route.ts
-│   │   └── reviews/route.ts
-│   │
-│   ├── components/
-│   │   ├── inputs/
-│   │   ├── listings/
-│   │   ├── modals/
-│   │   ├── navbar/
-│   │   ├── providers/
-│   │   └── ui/               ← Button, Avatar, Heading etc.
-│   │
-│   ├── hooks/
-│   ├── libs/
-│   │   └── prismadb.ts
-│   │
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-│
-├── controllers/              ← ✅ moved outside app/
-│   └── authController.ts
-│
-├── types/                    ← ✅ moved outside app/
-│   └── index.ts
-│
-├── constants/                ← ✅ new
-│   └── categories.ts
-│
-├── public/
-├── .env
-├── middleware.ts
-├── next.config.js
-└── tailwind.config.ts
+```
+📁airbnb
+└── 📁app
+    └── 📁actions
+        ├── getCurrentUser.ts
+        ├── getListingById.ts
+        ├── getListings.ts
+        ├── getReservation.ts
+    └── 📁admin
+        ├── page.tsx
+    └── 📁api
+        └── 📁auth
+            └── 📁[...nextauth]
+                ├── route.ts
+        └── 📁listings
+            └── 📁[listingId]
+                ├── route.ts
+            ├── route.ts
+        └── 📁register
+            ├── route.ts
+        └── 📁resend-verification
+            ├── route.ts
+        └── 📁reservations
+            └── 📁[reservationId]
+                ├── route.ts
+            ├── route.ts
+        └── 📁reviews
+            ├── route.ts
+        └── 📁verify-email
+            ├── route.ts
+    └── 📁components
+        └── 📁hooks
+            ├── useAuthStore.ts
+            ├── useLoginModel.ts
+            ├── useRegisterModel.ts
+        └── 📁inputs
+            ├── Input.tsx
+        └── 📁listings
+            ├── ListingCard.tsx
+        └── 📁models
+            ├── LoginModel.tsx
+            ├── Model.tsx
+            ├── RegisterModel.tsx
+        └── 📁navbar
+            ├── Logo.tsx
+            ├── MenuItem.tsx
+            ├── Navbar.tsx
+            ├── Search.tsx
+            ├── UserMenu.tsx
+        └── 📁providers
+            ├── SessionProvider.tsx
+            ├── Toasterprovider.tsx
+        ├── Avatar.tsx
+        ├── Button.tsx
+        ├── ClientOnly.tsx
+        ├── Container.tsx
+        ├── Heading.tsx
+    └── 📁data
+        ├── listings.ts
+    └── 📁libs
+        ├── getPrismdb.ts
+        ├── mailer.ts
+        ├── WithRole.ts
+    └── 📁login
+        ├── page.tsx
+    ├── desktop.ini
+    ├── favicon.ico
+    ├── globals.css
+    ├── layout.tsx
+    └── page.tsx
+```
