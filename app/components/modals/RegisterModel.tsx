@@ -1,6 +1,6 @@
 'use client';
 import axios from 'axios';
-import { AiFillAccountBook, AiFillGitlab } from 'react-icons/ai';
+import { AiFillAccountBook, AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
 
@@ -11,6 +11,7 @@ import Heading from '../Heading';
 import Input from '../inputs/Input';
 import toast from 'react-hot-toast';
 import Button from '../Button';
+import { signIn } from 'next-auth/react';
 const RegisterModel = () => {
     const registerModel = useRegisterModel();
     const [isLoading, setIsLoading] = useState(false);
@@ -80,13 +81,13 @@ const RegisterModel = () => {
                 outline
                 label='Continue with Google'
                 icon={FcGoogle}
-                onClick={() => { }}
+                onClick={() => {}}
             />
             <Button
                 outline
                 label='Continue with Github'
-                icon={AiFillGitlab}
-                onClick={() => { }}
+                icon={AiFillGithub}
+                onClick={() => signIn('github')}
             />
             <div className='
             text-neutral-500
