@@ -6,31 +6,40 @@ import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModel from "@/app/hooks/useRegisterModal";
 import useLoginModel from "@/app/hooks/useLoginModal";
-const UserMenu = () => {
+import { User } from "@/app/generated/prisma/client";
+import { signOut } from "next-auth/react";
+
+interface UserMenuProps {
+    currentUser?: User | null
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({
+    currentUser
+}) => {
 
     const registerModel = useRegisterModel();
     const loginModel = useLoginModel();
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleOpen = useCallback(() =>{
+    const toggleOpen = useCallback(() => {
         setIsOpen((val) => !val);
-    },[])
+    }, [])
 
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
                 <div
-                onClick={() => {}}
-                className="
+                    onClick={() => { }}
+                    className="
                   hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer
                 "
                 >
                     Airbnb your home
 
                 </div>
-                <div 
-                  onClick={toggleOpen}
-                  className="
+                <div
+                    onClick={toggleOpen}
+                    className="
                    p-4
                    md:py-1
                    md:px-2
@@ -46,15 +55,15 @@ const UserMenu = () => {
                    transition
                   "
                 >
-                    <AiOutlineMenu/>
+                    <AiOutlineMenu />
                     <div className="hidden md:block">
-                        <Avatar/>
+                        <Avatar />
                     </div>
                 </div>
             </div>
-            {isOpen &&  (
-                <div 
-                 className="
+            {isOpen && (
+                <div
+                    className="
                   absolute
                   rounded-xl
                   shadow-md
@@ -68,18 +77,46 @@ const UserMenu = () => {
                  "
                 >
                     <div
-                     className="flex flex-col cursor-pointer"
+                        className="flex flex-col cursor-pointer"
                     >
-                        <>
-                        <MenuItem 
-                        onClick={loginModel.onOpen}
-                        label="Login"
-                        />
-                         <MenuItem 
-                        onClick={registerModel.onOpen}
-                        label="Sign up"
-                        />
-                        </>
+                        {currentUser ? (
+                            <>
+                                <MenuItem
+                                    onClick={() => { }}
+                                    label="My trips"
+                                />
+                                <MenuItem
+                                    onClick={()=>{}}
+                                    label="My reservations"
+                                />
+                                <MenuItem
+                                    onClick={()=>{}}
+                                    label="My properties"
+                                />
+                                <MenuItem
+                                    onClick={()=>{}}
+                                    label="Airbnb my home"
+                                />
+                                <hr />
+                                <MenuItem
+                                    onClick={()=>signOut()}
+                                    label="Logout"
+                                />
+
+                            </>
+                        ) : (
+                            <>
+                                <MenuItem
+                                    onClick={loginModel.onOpen}
+                                    label="Login"
+                                />
+                                <MenuItem
+                                    onClick={registerModel.onOpen}
+                                    label="Sign up"
+                                />
+                            </>
+                        )}
+
                     </div>
                 </div>
             )}
