@@ -8,11 +8,13 @@ const Logo = () => {
     
     return (
         <Image
+        onClick={()=>router.push('/')}
         alt="Logo"
-        className="hidden md:block cursor-pointer"
-        height="100"
-        width="100"
-        src="/Images/air1.png"/>
+        className="block h-8 w-auto cursor-pointer md:h-10"
+        height="40"
+        width="120"
+        src="/Images/air1.png"
+        priority/>
     )
 }
 

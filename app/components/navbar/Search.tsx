@@ -27,7 +27,7 @@ const Search = ()=> {
             text-sm
             font-semibold
             px-6
-            border-x -[1px]
+            border-x-[1px]
             flex-1
             text-center
             ">
